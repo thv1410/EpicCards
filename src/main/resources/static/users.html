@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/user.js" defer></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      color: #333;
+      margin: 0;
+      padding: 40px;
+    }
+
+    nav {
+      background-color: #00796b;
+      padding: 12px 24px;
+      border-radius: 8px;
+      display: flex;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 14px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #004d40;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00796b;
+      margin-bottom: 25px;
+    }
+
+    #userSearch {
+      display: block;
+      margin: 0 auto 25px auto;
+      padding: 12px;
+      width: 60%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    #userList {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+    }
+
+    ul.user-list li {
+      background-color: white;
+      border: 2px solid #00796b;
+      border-radius: 10px;
+      padding: 10px;
+      width: 100;
+      text-align: center;
+      color: #00796b;
+      margin: 10px;
+    }
+
+    ul.user-list li:hover {
+      background-color: #b2dfdb;
+      border: 2px solid #004d40;
+      color: #004d40;
+    }
+
+    .user-item {
+      background-color: #b2dfdb;
+      margin-bottom: 12px;
+      padding: 14px 20px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease, background-color 0.2s;
+    }
+
+    .user-item:hover {
+      transform: scale(1.01);
+      background-color: #a0ccc7;
+    }
+
+    .username {
+      font-weight: bold;
+      color: #004d40;
+      font-size: 1.05rem;
+    }
+
+    .view-btn {
+      background-color: #00796b;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .view-btn:hover {
+      background-color: #004d40;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html" id="homeLink">Home</a>
+    <a href="users.html">Users</a>
+    <a href="classrooms.html">Classrooms</a>
+    <a href="sets.html">Study Sets</a>
+    <a href="#" id="logoutLink" style="display:none">Logout</a>
+  </nav>
+  <h2>Users</h2>
+  <input type="text" id="userSearch" placeholder="Search users...">
+  <ul id="userList" class="user-list"></ul>
+</body>
+
+</html>

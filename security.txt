@@ -1,0 +1,2 @@
+I stored the password in the database by hashing it with bcrypt from Spring Security. 
+When the user login, I unhash the password and check whether the passwords match.

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Sets</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/flashcard.js" defer></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      color: #333;
+      margin: 0;
+      padding: 40px;
+    }
+  
+    nav {
+      background-color: #00796b;
+      padding: 10px 20px;
+      border-radius: 8px;
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+  
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+  
+    nav a:hover {
+      background-color: #004d40;
+    }
+  
+    h2, h3 {
+      text-align: center;
+      color: #00796b;
+    }
+  
+    #setSearch, #newSetTitle {
+      display: block;
+      margin: 10px auto 20px auto;
+      padding: 10px;
+      width: 60%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+  
+    #createSetBtn {
+      display: block;
+      margin: 0 auto 30px auto;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+  
+    #createSetBtn:hover {
+      background-color: #004d40;
+    }
+  
+    .sets-list {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+    }
+  
+    .sets-list li {
+      background: #b2dfdb;
+      padding: 12px 20px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #004d40;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <a href="index.html" id="homeLink">Home</a>
+    <a href="users.html">Users</a>
+    <a href="classrooms.html">Classrooms</a>
+    <a href="sets.html">Study Sets</a>
+    <a href="#" id="logoutLink" style="display:none">Logout</a>
+  </nav>
+  <h2>Your Study Sets</h2>
+  <input type="text" id="setSearch" placeholder="Search study sets...">
+  <ul id="setList" class="sets-list"></ul>
+
+  <h3>Create New Set</h3>
+  <input type="text" id="newSetTitle" placeholder="Set title">
+  <button id="createSetBtn">Create</button>
+</body>
+</html>

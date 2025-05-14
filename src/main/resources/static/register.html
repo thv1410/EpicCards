@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      color: #333;
+      padding: 40px;
+      margin: 0;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00796b;
+      margin-bottom: 30px;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #b2dfdb;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+  </style>
+</head>
+<body>
+  <header style="text-align: center; padding: 20px 0; background-color: #00796b;">
+    <h1 style="margin: 0; color: white;">Epic Flashcards</h1>
+  </header>
+  <h2>Register</h2>
+  <main class="form-container">
+    <form id="registerForm">
+      <input type="text" id="regUsername" placeholder="Username" required><br>
+      <input type="password" id="regPassword" placeholder="Password" required><br>
+      <button type="submit">Register</button>
+      <p>Already have an account? <a href="login.html">Login here</a></p>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById("regUsername").value;
+      const password = document.getElementById("regPassword").value;
+
+      console.log("Attempting to register:", username, password); 
+
+      try {
+        const response = await fetch("http://localhost:8080/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ username, password })
+        });
+
+        const text = await response.text();
+        alert(text);
+
+        if (text.includes("successfully")) {
+          window.location.href = "login.html";
+        }
+
+      } catch (error) {
+        console.error("Error connecting to backend:", error);
+        alert("Could not reach the server. Is it running?");
+      }
+    });
+  </script>
+</body>
+</html>
