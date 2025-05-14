@@ -1,8 +1,0 @@
-The user table is generated using the Reddit Username on kaggle. Since the password is hashed,
-it have to be input with UserService instead of SQL insertion statement. DataConfig.java was used
-to generate SQL insertion statement for data.sql. The rest of the tables was inputted manually. 
-Note that we unfortunately finished ddl.sql before starting with the data set, so it was hard to 
-find a real world dataset that work for our schema due to all the tables referencing each other. 
-Link to data: https://www.kaggle.com/datasets/colinmorris/reddit-usernames
-
-

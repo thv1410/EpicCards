@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Classrooms</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <script src="js/classroom.js" defer></script>
-  <style>
-    body {
+body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(to right, #f1f8e9, #ffffff);
       color: #00796b;
@@ -107,25 +99,3 @@
       border: 1px solid #cfd8dc;
       border-radius: 6px;
     }
-  </style>
-</head>
-<body>
-  <nav>
-    <a href="index.html" id="homeLink">Home</a>
-    <a href="users.html">Users</a>
-    <a href="classrooms.html">Classrooms</a>
-    <a href="sets.html">Study Sets</a>
-    <a href="#" id="logoutLink" style="display:none">Logout</a>
-  </nav>
-  <h2>Your Classrooms</h2>
-  <ul id="myClassrooms" class="classroom-list"></ul>
-  <h3>Create a Classroom</h3>
-  <input type="text" id="newClassroomName" placeholder="Classroom name">
-  <button id="createClassroomBtn">Create</button>
-
-  <h2>Search for New Classrooms</h2>
-  <input type="text" id="classroomSearch" placeholder="Search for classrooms">
-  
-  <ul id="classroomList" class="classroom-list"></ul>
-</body>
-</html>

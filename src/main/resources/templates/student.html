@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <title>Classroom Students</title>
-  <script src="js/students.js" defer></script>
-  <link rel="stylesheet" href="css/styles.css" />
+  <script th:src="@{/js/students.js}" defer></script>
+  <link rel="stylesheet" th:href="@{/css/student.css}" />
 </head>
 <body>
   <nav>
-    <a href="index.html" id="homeLink">Home</a>
-    <a href="users.html">Users</a>
-    <a href="classrooms.html">Classrooms</a>
-    <a href="sets.html">Study Sets</a>
+    <a href="home.html" id="homeLink">Home</a>
+    <a href="user.html">Users</a>
+    <a href="classroom.html">Classrooms</a>
+    <a href="category.html">Study Sets</a>
     <a href="#" id="logoutLink" style="display:none">Logout</a>
   </nav>
   <h2 id="classroomTitle">Classroom: </h2>

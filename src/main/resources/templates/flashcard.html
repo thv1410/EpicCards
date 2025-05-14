@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Flashcards</title>
+  <link rel="stylesheet" th:href="@{/css/flashcard.css}">
+  <script th:src="@{/js/flashcard.js}" defer></script>
+  
+</head>
+<body>
+  <nav>
+    <a href="home.html" id="homeLink">Home</a>
+    <a href="user.html">Users</a>
+    <a href="classroom.html">Classrooms</a>
+    <a href="category.html">Study Sets</a>
+    <a href="#" id="logoutLink" style="display:none">Logout</a>
+  </nav>
+  <div id="flashcardContainer">
+    <div class="card" id="flashcard">
+      <div class="card-inner">
+        <div class="card-front">No Cards</div>
+        <div class="card-back"></div>
+      </div>
+    </div>
+    <br>
+    <div class="flashcard-buttons">
+      <button id="prev">Previous</button>
+      <button id="delete">Delete</button>
+      <button id="next">Next</button>
+    </div>
+  </div>
+
+  <h3>Create A New Flashcard</h3>
+  <input type="term" id="newSetTerm" placeholder="Set term">
+  <input type="definiton" id="newSetDefinition" placeholder="Set definition">
+  <button id="createFlashcardBtn">Create</button>
+</body>
+</html>

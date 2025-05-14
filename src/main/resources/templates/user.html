@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <script th:src="@{/js/user.js}" defer></script>
+  <link rel="stylesheet" th:href="@{/css/user.css}" />
+
+</head>
+
+<body>
+  <nav>
+    <a href="home.html" id="homeLink">Home</a>
+    <a href="user.html">Users</a>
+    <a href="classroom.html">Classrooms</a>
+    <a href="category.html">Study Sets</a>
+    <a href="#" id="logoutLink" style="display:none">Logout</a>
+  </nav>
+  <h2>Users</h2>
+  <input type="text" id="userSearch" placeholder="Search users...">
+  <ul id="userList" class="user-list"></ul>
+</body>
+
+</html>

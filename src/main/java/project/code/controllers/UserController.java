@@ -16,6 +16,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    // Redirect to the login page
+    @GetMapping("/")
+    public String loginPage() {
+        return "login";
+    }
+
     // Register a new user
     @PostMapping("/register")
     public String register(@Valid @RequestBody User user) {
