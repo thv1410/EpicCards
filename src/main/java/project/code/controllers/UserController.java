@@ -1,25 +1,35 @@
 package project.code.controllers;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import project.code.models.User;
 import project.code.services.UserService;
-import java.util.List;
 
-@RestController
+@Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     // Redirect to the login page
-    @GetMapping("/")
+    @GetMapping("/login")
     public String loginPage() {
         return "login";
+    }
+
+    // Redirect to the home page
+    @GetMapping("/home")
+    public String homePage() {
+        return "home";
+    }
+
+    @GetMapping("/register")
+    public String showRegisterPage() {
+        return "register";
     }
 
     // Register a new user
@@ -36,25 +46,6 @@ public class UserController {
             System.out.println("Failed to register user: " + user.getUsername());
             return "Failed to register user.";
         }
-    }
-
-    // Login an existing user and return the user to the frontend
-    @PostMapping("/login")
-    public Map<String, String> login(@RequestBody User user) {
-        User result = userService.authenticate(user.getUsername(), user.getPassword());
-        Map<String, String> response = new HashMap<>();
-
-        if (result != null) {
-            response.put("message", "success");
-            response.put("username", result.getUsername());
-            response.put("userID", String.valueOf(result.getUserID()));
-            System.out.println(
-                    "User successfully logged in: " + result.getUsername() + " with ID: " + result.getUserID());
-        } else {
-            response.put("message", "fail");
-        }
-
-        return response;
     }
 
     // Get all users

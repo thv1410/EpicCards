@@ -2,15 +2,20 @@ package project.code.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import project.code.models.User;
+// import org.springframework.security.core.userdetails.User as SecurityUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Repository
-public class UserService {
+public class UserService implements UserDetailsService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     // BCryptPasswordEncoder is used to hash passwords
@@ -86,17 +91,17 @@ public class UserService {
     // get user statistics
     public List<Integer> getUserStatistics(int userID) {
         String sql = "SELECT user.userID, COUNT(DISTINCT category.categoryID) AS categoriesCreated, "
-            + "COUNT(DISTINCT classroom.classroomID) AS classroomsCreated, "
-            + "COUNT(DISTINCT enrolled.classroomID) AS classroomsJoined, "
-            + "COUNT(DISTINCT flashcard.flashcardID) AS flashcardsCreated "
-            + "FROM user "
-            + "LEFT JOIN category ON user.userID = category.userID "
-            + "LEFT JOIN classroom ON user.userID = classroom.teacherID "
-            + "LEFT JOIN enrolled ON user.userID = enrolled.studentID "
-            + "LEFT JOIN category AS category_for_flashcards ON category_for_flashcards.userID = user.userID "
-            + "LEFT JOIN flashcard ON flashcard.categoryID = category_for_flashcards.categoryID "
-            + "WHERE user.userID = ? "
-            + "GROUP BY user.userID";
+                + "COUNT(DISTINCT classroom.classroomID) AS classroomsCreated, "
+                + "COUNT(DISTINCT enrolled.classroomID) AS classroomsJoined, "
+                + "COUNT(DISTINCT flashcard.flashcardID) AS flashcardsCreated "
+                + "FROM user "
+                + "LEFT JOIN category ON user.userID = category.userID "
+                + "LEFT JOIN classroom ON user.userID = classroom.teacherID "
+                + "LEFT JOIN enrolled ON user.userID = enrolled.studentID "
+                + "LEFT JOIN category AS category_for_flashcards ON category_for_flashcards.userID = user.userID "
+                + "LEFT JOIN flashcard ON flashcard.categoryID = category_for_flashcards.categoryID "
+                + "WHERE user.userID = ? "
+                + "GROUP BY user.userID";
         try {
             return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
                 List<Integer> stats = new ArrayList<>();
@@ -120,6 +125,21 @@ public class UserService {
                 rs.getInt("userID"),
                 rs.getString("username"),
                 rs.getString("password")), excludeUserID);
-    } // get users except the current user
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = getUserByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found: " + username);
+        }
+
+        String role = "ROLE_USER";
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                List.of(new SimpleGrantedAuthority(role)));
+    }
 
 }
