@@ -1,49 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.getElementById("loginForm");
-  const logoutLink = document.getElementById("logoutLink");
-  const loginLink = document.getElementById("loginLink");
-  const registerLink = document.getElementById("registerLink");
+  const registerForm = document.getElementById("registerForm");
 
-  const username = localStorage.getItem("username");
-
-  if (username) {
-    if (logoutLink) logoutLink.style.display = "inline";
-    if (loginLink) loginLink.style.display = "none";
-    if (registerLink) registerLink.style.display = "none";
-  }
-
-  logoutLink?.addEventListener("click", () => {
-    localStorage.removeItem("username");
-    localStorage.removeItem("userID");
-    window.location.href = "login.html";
-  });
-
-  loginForm?.addEventListener("submit", async (e) => {
+  registerForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const usernameInput = document.getElementById("username").value.trim();
-    const passwordInput = document.getElementById("password").value.trim();
+    const username = document.getElementById("regUsername").value.trim();
+    const password = document.getElementById("regPassword").value.trim();
 
     try {
-      const res = await fetch("http://localhost:8080/login", {
+      const response = await fetch("/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: usernameInput, password: passwordInput }),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
       });
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
+      const text = await response.text();
+      alert(text);
 
-      if (data.message === "success") {
-        localStorage.setItem("username", data.username);
-        localStorage.setItem("userID", data.userID);
-        window.location.href = "index.html";
-      } else {
-        alert("Login failed. Check credentials.");
+      if (text.includes("successfully")) {
+        window.location.href = "/login";
       }
-    } catch (err) {
-      console.error("Login error:", err);
-      alert("Server error. Please try again later.");
+
+    } catch (error) {
+      console.error("Error connecting to backend:", error);
+      alert("Could not reach the server. Please try again later.");
     }
   });
 });

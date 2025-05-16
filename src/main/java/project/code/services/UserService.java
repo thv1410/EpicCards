@@ -6,18 +6,20 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Repository;
 import project.code.models.User;
 // import org.springframework.security.core.userdetails.User as SecurityUser;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class UserService implements UserDetailsService {
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
     // BCryptPasswordEncoder is used to hash passwords
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -127,9 +129,12 @@ public class UserService implements UserDetailsService {
                 rs.getString("password")), excludeUserID);
     }
 
+    // login user
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("Trying to load user: " + username);
         User user = getUserByUsername(username);
+
         if (user == null) {
             throw new UsernameNotFoundException("User not found: " + username);
         }

@@ -1,56 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Register</title>
   <link rel="stylesheet" th:href="@{/css/register.css}">
-  <script th:src="@{/js/auth.js}" defer></script>
-  
 </head>
 <body>
   <header>
-    <h1 style="margin: 0; color: white;">Epic Flashcards</h1>
+    <h1>Epic Flashcards</h1>
   </header>
   <h2>Register</h2>
   <main class="form-container">
-    <form id="registerForm">
-      <input type="text" id="regUsername" placeholder="Username" required><br>
-      <input type="password" id="regPassword" placeholder="Password" required><br>
+    <form th:action="@{/register}" method="post">
+      <input type="text" name="username" placeholder="Username" required><br>
+      <input type="password" name="password" placeholder="Password" required><br>
       <button type="submit">Register</button>
-      <p>Already have an account? <a href="login.html">Login here</a></p>
+      <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
     </form>
   </main>
-
-  <script>
-    document.getElementById("registerForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const username = document.getElementById("regUsername").value;
-      const password = document.getElementById("regPassword").value;
-
-      console.log("Attempting to register:", username, password); 
-
-      try {
-        const response = await fetch("http://localhost:8080/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ username, password })
-        });
-
-        const text = await response.text();
-        alert(text);
-
-        if (text.includes("successfully")) {
-          window.location.href = "login.html";
-        }
-
-      } catch (error) {
-        console.error("Error connecting to backend:", error);
-        alert("Could not reach the server. Is it running?");
-      }
-    });
-  </script>
+   <div th:if="${error}">
+     <p th:text="${error}"></p>
+   </div>
 </body>
 </html>

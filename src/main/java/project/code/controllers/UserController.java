@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import project.code.models.User;
 import project.code.services.UserService;
+import org.springframework.ui.Model;
 
 @Controller
 public class UserController {
@@ -27,6 +28,7 @@ public class UserController {
         return "home";
     }
 
+    // Redirect to the register page
     @GetMapping("/register")
     public String showRegisterPage() {
         return "register";
@@ -34,17 +36,18 @@ public class UserController {
 
     // Register a new user
     @PostMapping("/register")
-    public String register(@Valid @RequestBody User user) {
-        int result = userService.insertUser(user.getUsername(), user.getPassword());
+    public String register(@RequestParam String username, @RequestParam String password, Model model) {
+        int result = userService.insertUser(username, password);
+
         if (result > 0) {
-            System.out.println("User registered successfully: " + user.getUsername());
-            return "User registered successfully!";
+            System.out.println("User registered successfully: " + username);
+            return "redirect:/login?registered";
         } else if (result == 0) {
-            System.out.println("Username already exists: " + user.getUsername());
-            return "Username already exists!";
+            model.addAttribute("error", "Username already exists.");
+            return "register";
         } else {
-            System.out.println("Failed to register user: " + user.getUsername());
-            return "Failed to register user.";
+            model.addAttribute("error", "Failed to register user.");
+            return "register";
         }
     }
 
@@ -68,9 +71,10 @@ public class UserController {
         return userService.getUserStatistics(userID);
     }
 
+    // returns uses except the one with given userID
     @GetMapping("/getAllOtherUsers")
     public List<User> getAllOtherUsers(@RequestParam int userID) {
         return userService.getAllUsersExcept(userID);
-    } // returns uses except the one with given userID
+    }
 
 }

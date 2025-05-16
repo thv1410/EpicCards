@@ -19,5 +19,8 @@
       <p>Don't have an account? <a th:href="@{/register}">Register here</a></p>
     </form>
   </main>
+  <p th:if="${param.error}">Invalid username or password</p>
+  <p th:if="${param.registered}">Registration successful. Please log in.</p>
+
 </body>
 </html>
