@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Study Sets</title>
   <link rel="stylesheet" th:href="@{/css/category.css}">
   <script th:src="@{/js/category.js}" defer></script>
-  
 </head>
 <body>
   <nav>
-    <a href="home.html" id="homeLink">Home</a>
-    <a href="user.html">Users</a>
-    <a href="classroom.html">Classrooms</a>
-    <a href="category.html">Study Sets</a>
+    <a th:href="@{/home}" id="homeLink">Home</a>
+    <a th:href="@{/user}">Users</a>
+    <a th:href="@{/classroom}">Classrooms</a>
+    <a th:href="@{/category}">Study Sets</a>
     <a href="#" id="logoutLink" style="display:none">Logout</a>
   </nav>
+
   <h2>Your Study Sets</h2>
   <input type="text" id="setSearch" placeholder="Search study sets...">
   <ul id="setList" class="sets-list"></ul>

@@ -18,6 +18,12 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
+    // Redirect to the category creation page
+    @GetMapping("/category")
+    public String categoryPage() {
+        return "category";
+    }
+
     // Handle category creation
     @PostMapping("/createCategory")
     public String createCategory(@Valid @RequestBody Category category) {

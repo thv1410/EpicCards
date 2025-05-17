@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <title>Classroom Students</title>
@@ -8,12 +8,13 @@
 </head>
 <body>
   <nav>
-    <a href="home.html" id="homeLink">Home</a>
-    <a href="user.html">Users</a>
-    <a href="classroom.html">Classrooms</a>
-    <a href="category.html">Study Sets</a>
+    <a th:href="@{/home}" id="homeLink">Home</a>
+    <a th:href="@{/user}">Users</a>
+    <a th:href="@{/classroom}">Classrooms</a>
+    <a th:href="@{/category}">Study Sets</a>
     <a href="#" id="logoutLink" style="display:none">Logout</a>
   </nav>
+
   <h2 id="classroomTitle">Classroom: </h2>
   <h2>Students in this Classroom:</h2>
   <ul id="studentList"></ul>

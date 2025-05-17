@@ -22,6 +22,12 @@ public class FlashcardController {
     @Autowired
     CategoryService categoryServices;
 
+    // Redirect to the flashcard page
+    @GetMapping("/flashcard")
+    public String flashcardPage() {
+        return "flashcard";
+    }
+
     // Handle flashcard creation
     @PostMapping("/createFlashcard")
     public String createFlashcard(@Valid @RequestBody Flashcard flashcard) {

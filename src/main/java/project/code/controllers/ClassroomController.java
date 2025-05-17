@@ -20,6 +20,18 @@ public class ClassroomController {
     @Autowired
     private ClassroomService classroomService;
 
+    // Redirect to the classroom page
+    @GetMapping("/classroom")
+    public String classroomPage() {
+        return "classroom";
+    }
+
+    // Redirect to the student page
+    @GetMapping("/student")
+    public String studentPage() {
+        return "student";
+    }
+
     // Handle classroom creation
     @PostMapping("/createClassroom")
     public String createClassroom(@Valid @RequestBody Classroom classroom) {
