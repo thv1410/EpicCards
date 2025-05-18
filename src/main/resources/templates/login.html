@@ -10,7 +10,7 @@
   <header>
     <h1>Epic Flashcards</h1>
   </header>
-  <h2>Login</h2>
+  <h2>Welcome!</h2>
   <main class="form-container">
     <form method="POST" action="/login">
       <input type="text" name="username" placeholder="Username" required><br>
@@ -19,8 +19,8 @@
       <p>Don't have an account? <a th:href="@{/register}">Register here</a></p>
     </form>
   </main>
-  <p th:if="${param.error}">Invalid username or password</p>
-  <p th:if="${param.registered}">Registration successful. Please log in.</p>
+  <p id ="error" th:if="${param.error}">Invalid username or password</p>
+  <p id ="success" th:if="${param.registered}">Registration successful. Please log in.</p>
 
 </body>
 </html>

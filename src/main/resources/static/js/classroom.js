@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   logoutLink?.addEventListener("click", () => {
     localStorage.removeItem("username");
     localStorage.removeItem("userID");
-    window.location.href = "login.html";
+    window.location.href = "login";
   });
 
   async function fetchMyClassrooms() {
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
       // Classroom name as a link
       const link = document.createElement("a");
-      link.href = `students.html?classroomID=${c.classroomID}`;
+      link.href = `student?classroomID=${c.classroomID}`;
       link.textContent = c.name;
       li.appendChild(link);
   

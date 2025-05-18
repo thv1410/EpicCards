@@ -3,17 +3,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const studentList = document.getElementById("studentList");
     const classroomTitle = document.getElementById("classroomTitle");
     const logoutLink = document.getElementById("logoutLink");
-
-  // Show logout button if user is logged in
-  if (localStorage.getItem("username")) {
-    logoutLink.style.display = "inline";
-  }
   
   // Logout behavior
   logoutLink?.addEventListener("click", () => {
     localStorage.removeItem("username");
     localStorage.removeItem("userID");
-    window.location.href = "login.html";
+    window.location.href = "login";
   });
   
     // Fetch the classroom info to get its name
@@ -38,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const li = document.createElement("li");
 
       const link = document.createElement("a");
-      link.href = `sets.html?userID=${s.userID}`;
+      link.href = `category?userID=${s.userID}`;
       link.textContent = s.username;
     
       li.appendChild(link);

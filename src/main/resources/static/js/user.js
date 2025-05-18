@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   logoutLink?.addEventListener("click", () => {
     localStorage.removeItem("username");
     localStorage.removeItem("userID");
-    window.location.href = "login.html";
+    window.location.href = "login";
   });
 
   async function fetchUsers() {
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const li = document.createElement("li");
       li.textContent = user.username;
       li.addEventListener("click", () => {
-        window.location.href = `sets.html?userID=${user.userID}`;
+        window.location.href = `category?userID=${user.userID}`;
       });
       userList.appendChild(li);
     });

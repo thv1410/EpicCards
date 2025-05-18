@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.validation.Valid;
 import project.code.models.Flashcard;
 import project.code.services.FlashcardService;
 import project.code.services.CategoryService;
 
-@RestController
+@Controller
 public class FlashcardController {
     @Autowired
     FlashcardService flashcardService;
@@ -56,6 +58,7 @@ public class FlashcardController {
 
     // Handle flashcard retrieval
     @GetMapping("/getFlashcard")
+    @ResponseBody
     public Flashcard getFlashcard(@RequestParam int flashcardID) {
         Flashcard flashcard = flashcardService.getFlashcard(flashcardID);
         return flashcard;
@@ -63,6 +66,7 @@ public class FlashcardController {
 
     // Handle all flashcards retrieval
     @GetMapping("/getAllFlashcards")
+    @ResponseBody
     public List<Flashcard> getAllFlashcards(@RequestParam int categoryID, @RequestParam String term) {
         List<Flashcard> flashcards = flashcardService.getAllFlashcards(categoryID, term);
         return flashcards;
@@ -70,6 +74,7 @@ public class FlashcardController {
 
     // Handle all flashcards retrieval
     @GetMapping("/getAllFlashcardsFromCategory")
+    @ResponseBody
     public List<Flashcard> getAllFlashcardsFromCategory(@RequestParam int categoryID) {
         List<Flashcard> flashcards = flashcardService.getAllFlashcardsFromCategory(categoryID);
         return flashcards;

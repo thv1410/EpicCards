@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 
 import jakarta.validation.Valid;
 import project.code.models.Category;
 import project.code.services.CategoryService;
 
-@RestController
+@Controller
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
@@ -50,6 +52,7 @@ public class CategoryController {
 
     // Handle category retrieval
     @GetMapping("/getCategory")
+    @ResponseBody
     public Category getCategory(@RequestParam int categoryID) {
         Category category = categoryService.getCategory(categoryID);
         return category;
@@ -57,6 +60,7 @@ public class CategoryController {
 
     // Handle categories retrieval
     @GetMapping("/getAllCategories")
+    @ResponseBody
     public List<Category> getAllCategories(@RequestParam int userID, @RequestParam String title) {
         List<Category> categories = categoryService.getAllCategories(userID, title);
         return categories;
@@ -64,6 +68,7 @@ public class CategoryController {
 
     // Handle categories retrieval
     @GetMapping("/getAllCategoriesFromUser")
+    @ResponseBody
     public List<Category> getAllCategoriesFromUser(@RequestParam int userID) {
         List<Category> categories = categoryService.getAllCategoriesFromUser(userID);
         return categories;
@@ -71,6 +76,7 @@ public class CategoryController {
 
     // Handle categories retrieval
     @GetMapping("/getAllCategoriesFromTitle")
+    @ResponseBody
     public List<Category> getAllCategoriesFromTitle(@RequestParam String title) {
         List<Category> categories = categoryService.getAllCategoriesFromTitle(title);
         return categories;

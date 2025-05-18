@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.validation.Valid;
 import project.code.services.ClassroomService;
@@ -14,7 +16,7 @@ import project.code.models.Enrolled;
 import java.util.List;
 import project.code.models.User;
 
-@RestController
+@Controller
 public class ClassroomController {
 
     @Autowired
@@ -34,6 +36,7 @@ public class ClassroomController {
 
     // Handle classroom creation
     @PostMapping("/createClassroom")
+    @ResponseBody
     public String createClassroom(@Valid @RequestBody Classroom classroom) {
         String name = classroom.getName();
         int teacherID = classroom.getTeacherID();
@@ -52,6 +55,7 @@ public class ClassroomController {
 
     // Handle classroom deletion
     @PostMapping("/removeClassroom")
+    @ResponseBody
     public String removeClassroom(@RequestParam int classroomID) {
         boolean result = classroomService.deleteClassroom(classroomID);
         if (result) {
@@ -65,6 +69,7 @@ public class ClassroomController {
 
     // Handle student joining a classroom
     @PostMapping("/joinClassroom")
+    @ResponseBody
     public String joinClassroom(@RequestBody Enrolled enrolled) {
         int classroomID = enrolled.getClassroomID();
         int studentID = enrolled.getUserID();
@@ -83,6 +88,7 @@ public class ClassroomController {
 
     // Handle student leaving a classroom
     @PostMapping("/leaveClassroom")
+    @ResponseBody
     public String leaveClassroom(@RequestBody Enrolled enrolled) {
         int classroomID = enrolled.getClassroomID();
         int studentID = enrolled.getUserID();
@@ -99,6 +105,7 @@ public class ClassroomController {
 
     // Handle classroom retrieval
     @GetMapping("/getClassroom")
+    @ResponseBody
     public Classroom getClassroom(@RequestParam int classroomID) {
         System.out.println("Fetching classroom with ID: " + classroomID);
         Classroom classroom = classroomService.getClassroom(classroomID);
@@ -107,6 +114,7 @@ public class ClassroomController {
 
     // Get all students in a classroom
     @GetMapping("/getAllStudentsInClassroom")
+    @ResponseBody
     public List<User> getAllStudentsInClassroom(@RequestParam int classroomID) {
         System.out.println("Fetching all students in classroom with ID: " + classroomID);
         List<User> students = classroomService.getAllStudentsInClassroom(classroomID);
@@ -115,6 +123,7 @@ public class ClassroomController {
 
     // Get all classrooms for a user
     @GetMapping("/getAllClassroomsForUser")
+    @ResponseBody
     public List<Classroom> getAllClassroomsForUser(@RequestParam int userID) {
         System.out.println("Fetching all classrooms for user with ID: " + userID);
         List<Classroom> classrooms = classroomService.getAllClassroomsForUser(userID);
@@ -123,6 +132,7 @@ public class ClassroomController {
 
     // Get all classrooms
     @GetMapping("/getAllClassrooms")
+    @ResponseBody
     public List<Classroom> getAllClassrooms(@RequestParam int userID) {
         System.out.println("Fetching all classrooms");
         List<Classroom> classrooms = classroomService.getAllClassrooms(userID);
