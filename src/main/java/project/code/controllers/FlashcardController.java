@@ -32,6 +32,7 @@ public class FlashcardController {
 
     // Handle flashcard creation
     @PostMapping("/createFlashcard")
+    @ResponseBody
     public String createFlashcard(@Valid @RequestBody Flashcard flashcard) {
         String term = flashcard.getTerm();
         String definition = flashcard.getDefinition();
@@ -47,6 +48,7 @@ public class FlashcardController {
 
     // Handle flashcard deletion
     @PostMapping("/deleteFlashcard")
+    @ResponseBody
     public String deleteFlashcard(@RequestParam int flashcardID) {
         boolean result = flashcardService.deleteFlashcard(flashcardID);
         if (result) {

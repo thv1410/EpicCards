@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Set classroom title
     const classroom = await fetchClassroom();
     classroomTitle.textContent = `Classroom: ${classroom.name}`;
+    classroomTitle.innerHTML = `Classroom: <span>${classroom.name}</span>`;
   
     // Populate students
     const students = await fetchStudents();

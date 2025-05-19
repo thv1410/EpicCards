@@ -28,6 +28,7 @@ public class CategoryController {
 
     // Handle category creation
     @PostMapping("/createCategory")
+    @ResponseBody
     public String createCategory(@Valid @RequestBody Category category) {
         String title = category.getTitle();
         int userID = category.getUserID();
@@ -41,6 +42,7 @@ public class CategoryController {
 
     // Handle category deletion
     @PostMapping("/deleteCategory")
+    @ResponseBody
     public String deleteCategory(@RequestParam int categoryID) {
         boolean result = categoryService.deleteCategory(categoryID);
         if (result) {
