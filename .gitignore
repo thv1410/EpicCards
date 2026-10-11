@@ -35,4 +35,4 @@ build/
 # Ignore Spring Boot config
 **/application.properties
 
-
+userSamples.txt
